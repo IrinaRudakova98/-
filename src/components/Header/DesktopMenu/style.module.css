@@ -1,0 +1,24 @@
+
+
+
+.link {
+    font-size: 14px;
+    font-size: 1.1em;
+	padding: 0.5rem;
+	margin-right: 0.2rem;
+	color: white;
+	
+	border-radius: 3rem;
+	
+    cursor: pointer;
+ }
+ 
+ .link:hover {
+	color: black;
+ }
+
+ @media screen and (max-width: 877px) {
+    nav {
+  display: none;    
+    }
+}

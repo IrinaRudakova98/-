@@ -8,6 +8,7 @@ import { RootState } from "../../store/store";
 interface IProps {
   page?: boolean;
   isBasketOpen?: boolean;
+  items: ISneakers[]
 }
 
 const BasketList: FC<IProps> = ({ page, isBasketOpen }) => {
@@ -15,7 +16,6 @@ const BasketList: FC<IProps> = ({ page, isBasketOpen }) => {
   const items = useSelector<RootState, ISneakers[]>((state) => state.basket.data);
   console.log(items);
    
-
     return (
         <BasketListStyle $page={page} $isBasketOpen={isBasketOpen}>
           {items.map((item) => (

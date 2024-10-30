@@ -60,6 +60,11 @@
     text-align: center;
 }
 
+.size{
+    color: black;
+    
+}
+
 @media screen and (max-width: 825px) {
     .card {
         max-width: 500px;

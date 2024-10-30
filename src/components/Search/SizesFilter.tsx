@@ -7,10 +7,11 @@ const sizesData = [35, 36, 37, 38, 39, 40, 41, 42, 43];
 
 interface IProps {
   setValue: UseFormSetValue<IFormData>;
+  
 }
 
-const SizesFilter: FC<IProps> = ({ setValue }) => {
-  const [selectedSizes, setSelectedSizes] = useState<number[]>([]);
+const SizesFilter: FC<IProps> = ({ setValue}) => {
+  const [, setSelectedSizes] = useState<number[]>([]);
 
   const handleSizeChange = (size: number) => {
     
@@ -24,6 +25,7 @@ const SizesFilter: FC<IProps> = ({ setValue }) => {
   };
 
   return (
+    
     <SizesFilterStyle>
       <h4>Размер</h4>
 
@@ -39,8 +41,10 @@ const SizesFilter: FC<IProps> = ({ setValue }) => {
             <label htmlFor={size.toString()}>{size.toString()}</label>
           </li>
         ))}
+        
       </ul>
     </SizesFilterStyle>
+    
   );
 };
 
@@ -57,7 +61,7 @@ const SizesFilterStyle = styled.div`
     }
 
     input:checked + label {
-      background-color: var(--small-text);
+      background-color: grey;
     }
 
     li {
@@ -87,3 +91,4 @@ const SizesFilterStyle = styled.div`
 `;
 
 export default SizesFilter;
+

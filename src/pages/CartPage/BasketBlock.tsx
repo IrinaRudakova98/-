@@ -7,7 +7,6 @@ import ButtonRed from "../../components/Buttons/ButtonRed/button.tsx";
 
 interface IProps {
   setIsBasketOpen: () => void;
-
 }
 
 const BasketBlock: FC<IProps> = ({ setIsBasketOpen }) => {
@@ -25,9 +24,12 @@ const BasketBlock: FC<IProps> = ({ setIsBasketOpen }) => {
       <div className="container">
         <div className="back" onClick={setIsBasketOpen}></div>
         <div className="basket">
-          <BasketList isBasketOpen />
+          <BasketList isBasketOpen items={[]} />
           <InfoStyle>
-            <ButtonRed type="button" onClick={handleGoToBasket} text={"Перейти в корзину"} />
+            <div className="button">
+                 <ButtonRed type="button" onClick={handleGoToBasket} text={"Перейти в корзину"} />
+            </div>
+           
           </InfoStyle>
         </div>
       </div>
@@ -61,10 +63,10 @@ const BasketBlockStyle = styled.div`
     position: absolute;
     z-index: 5;
     right: 20px;
-    top: 0;
+    right: 10px;
     box-shadow: 0px -4px 10px 0px rgba(0, 13, 84, 0.1);
     background: rgb(255, 255, 255);
-    min-width: 480px;
+    min-width: 320px;
     padding-top: 10px;
     max-height: 520px;
   }
@@ -76,6 +78,7 @@ const InfoStyle = styled.div`
   padding: 20px 20px 13px;
   box-shadow: 0px -4px 10px 0px rgba(0, 13, 84, 0.1);
   background: rgb(255, 255, 255);
+
 
   h5 {
     color: rgb(77, 77, 77);
@@ -89,30 +92,11 @@ const InfoStyle = styled.div`
     font-weight: 700;
     line-height: 20px;
   }
-`;
-const BtnStyle = styled.button`
-  color: rgb(255, 255, 255);
-  font-family: "Intro";
-  font-size: 16px;
-  line-height: 16px;
-  border-radius: 4px;
-  background: red;
-  padding: 22px 47px;
-  width: fit-content;
 
-  &:hover {
-    background: red;
+  @media (max-width: 400px) {
+    .button {
+  margin: 0 auto;
   }
-
-  &:active {
-    background: red;
-  }
-
-  &:disabled {
-    background-color: red;
-    opacity: 0.8;
-    cursor: auto;
   }
 `;
-
 export default BasketBlock;

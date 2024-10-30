@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { delBasket, ISneakers } from "../../store/slices/basketSlice";
 import { AppDispatch } from "../../store/store";
+import Basket1 from "../../images/basket1.svg"
 
 interface IProps {
   isPage?: boolean;
@@ -21,8 +22,8 @@ const BasketCard: FC<IProps> = ({ isPage, item }) => {
         <h3 className="title">{item.title}</h3>
         <p className="price">{item.price} ₽</p>
       </div>
-      <button onClick={() => dispatch(delBasket(item.id))}>
-        <img src="src/images/basket1.svg" alt="Удалить" />
+      <button onClick={() => dispatch(delBasket(item.id ?? 0))}>
+        <img src={Basket1} alt="Удалить" />
       </button>
     </BasketCardStyle>
   );
@@ -35,7 +36,7 @@ const BasketCardStyle = styled.li<{ $isPage: boolean | undefined }>`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 40px;
   margin-bottom: ${(props) => (props.$isPage ? "15px" : "25px")};
   ${(props) => props.$isPage && "padding: 15px 0;"}
 
@@ -72,7 +73,7 @@ const BasketCardStyle = styled.li<{ $isPage: boolean | undefined }>`
 
     &:hover {
       border-radius: 4px;
-      
+      background: grey;
     }
   }
 `;

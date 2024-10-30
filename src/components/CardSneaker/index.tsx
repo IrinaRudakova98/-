@@ -33,6 +33,8 @@ const CardSneaker: FC<Props> = ({ item, data }) => {
           <img src={data.imgUrl} alt="Sneaker" />
           <h2>{data.title}</h2>
           <p>{data.price} p</p>
+          <p>{data.gender}</p>
+          
           <div className={style.add_block}>
             <Link to={`/sneaker/${data.id}`}>
               <img src="src/assets/View_product.png" alt="View button" />

@@ -10,72 +10,71 @@ import { changeLimit } from '../../store/slices/dataSlice';
 import React from 'react';
 
 interface IProps {
-    gender: string;
-    text: string;
-    onClick: () => void;
-    disabled?: boolean; 
+  gender: string;
+  text: string;
+  onClick: () => void;
+  disabled?: boolean; 
 }
 
 const CardsSneaker: FC<IProps> = ({ gender }) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const sneakers = useSelector<RootState, ISneakers[]>((state) => state.sneakers.data);
-  const limit = useSelector<RootState, number>((state) => state.data.limit);
-  const isLoading = useSelector<RootState, boolean>((state) => state.sneakers.isLoading);
-  const isError = useSelector<RootState, boolean>((state) => state.sneakers.isError);
+const dispatch = useDispatch<AppDispatch>();
+const sneakers = useSelector<RootState, ISneakers[]>((state) => state.sneakers.data);
+const limit = useSelector<RootState, number>((state) => state.data.limit);
+const isLoading = useSelector<RootState, boolean>((state) => state.sneakers.isLoading);
+const isError = useSelector<RootState, boolean>((state) => state.sneakers.isError);
 
-  const loadMore = () => {
-    dispatch(changeLimit()); // Увеличиваем лимит при нажатии на кнопку
-  };
+const loadMore = () => {
+  dispatch(changeLimit()); // Увеличиваем лимит при нажатии на кнопку
+};
 
-  
-    React.useEffect(() => {
-        dispatch(
-          fetchSneakers({
-              priceFrom: 0,
-              priceTo: 99999,
-              gender: gender,
-              sizes: [],
-              isLoading: false,
-              isError: false,
-              data: []
-          })
-        );
-      
-    const fetchData = async () => {
-      try {
-        await dispatch(fetchSneakers({
-            priceFrom: 0, priceTo: 99999, gender, sizes: [],
+
+  React.useEffect(() => {
+      dispatch(
+        fetchSneakers({
+            priceFrom: 0,
+            priceTo: 99999,
+            gender: gender,
+            sizes: [],
             isLoading: false,
             isError: false,
             data: []
-        }));
-      } catch (error) {
-        // Обработка ошибки может быть здесь, если нужно
-      }
-    };
+        })
+      );
+    
+  const fetchData = async () => {
+    try {
+      await dispatch(fetchSneakers({
+          priceFrom: 0, priceTo: 99999, gender, sizes: [],
+          isLoading: false,
+          isError: false,
+          data: []
+      }));
+    } catch (error) {
+      // Обработка ошибки может быть здесь, если нужно
+    }
+  };
 
-    fetchData();
+  fetchData();
 }, [dispatch, gender, limit]);
 
-  return (
-    <div className={style.container}>
-      {isLoading && <p>...loading</p>}
-      {isError && <p>Server is dead</p>}
-      {sneakers
-       .filter((_, index) => index < limit)
-        .map((sneaker) => (
-          <CardSneaker data={sneaker} key={sneaker.id} item={sneaker} />
-        ))}
-      
-      {limit < sneakers.length && !isLoading && !isError && (
-        <ButtonRed 
-          text="Показать еще" 
-          onClick={loadMore} 
-          disabled={limit >= sneakers.length} 
-        />
-      )}
-    </div>
-  );
+return (
+  <div className={style.container}>
+    {isLoading && <p>...loading</p>}
+    {isError && <p>Server is dead</p>}
+    {sneakers
+     .filter((_, index) => index < limit)
+      .map((sneaker) => (
+        <CardSneaker data={sneaker} key={sneaker.id} item={sneaker} />
+      ))}
+    
+    {limit < sneakers.length && !isLoading && !isError && (
+      <ButtonRed 
+                text="Показать еще"
+                onClick={loadMore}
+                disabled={limit >= sneakers.length} type={'button'}        />
+    )}
+  </div>
+);
 }
 
 export default CardsSneaker;

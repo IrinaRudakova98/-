@@ -50,7 +50,7 @@ const Basket: FC<IProps> = ({ setIsBasketOpen, isBasketOpen }) => {
   );
 
   const handleButtonClick = () => {
-    console.log("Кнопка нажата! Номер заказа:", orderNumber);
+    alert("Заказ оформлен!");
     if (typeof setIsBasketOpen === "function") {
       setIsBasketOpen(); // Закрываем корзину
     }
